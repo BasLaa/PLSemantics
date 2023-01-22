@@ -111,6 +111,3 @@ test = (x := N 3) :\ (If (V z :== N 17) (y := (V x :+ N 2)) (y := N 5))
 fact = (y := N 1) :\
          While (Neg (V x :== N 1))
             ((y := (V x :* V y)) :\ (x := (V x :- N 1)))
-
-
-

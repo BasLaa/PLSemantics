@@ -10,6 +10,8 @@ There is also a showcase of using PL semantics to analyse programs.
 *Secinfflow.hs* is a showcase of **security analysis**.\
 *Constprop.hs* is a showcase of **constant propagation analysis**.
 
-This was mostly done as an exercise to practice with PL semantics and Haskell.
+This was done outside regular courses as an exercise to practice with PL semantics and Haskell.
+
+
 
 <sup>1</sup> Hanne Riis Nielson and Flemming Nielson. 2007. Semantics with applications: an appetizer. John Wiley & Sons, Inc., USA.
