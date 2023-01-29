@@ -1,9 +1,12 @@
-module While where
+module Proc where
   {-
-    While is a simple language supporting if statements and while loops.
-    It consist of arithmetic - and boolean expressions, combined using statements
+    Proc is an extension of the While language with support for procedures.
+    Procedures can be created in 'begin ... end' blocks with the 'proc p is' syntax, 
+    and they are called using 'call p'.
+    Proc also distinguishes between local and global variables
+    Proc uses static scope rules as opposed to dynamic scoping.
   -}
-  import State ( Var, Z )
+  import Store ( Var, Z )
   -- Arithmetic expressions can be constructed as such
   data AExp = N Z | V Var
             | AExp :+ AExp
@@ -16,11 +19,18 @@ module While where
             | AExp :== AExp | AExp :< AExp
                             deriving Show
 
+  data VarDef = Var ::= AExp deriving Show
+  data Dv = Dv VarDef Dv | NilV deriving Show
+  data Dp = Proc String Stmt Dp | NilP deriving Show
+
   -- Statements can be constructed as such
   data Stmt = Var := AExp
             | Skip | Stmt :\ Stmt
             | If BExp Stmt Stmt
             | While BExp Stmt
+            | Begin Dv Dp Stmt
+            | Call String
+            | End
                             deriving Show
 
   iter :: Integer -> (x -> x) -> x -> x

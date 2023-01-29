@@ -2,15 +2,29 @@
 {-# OPTIONS_GHC -Wno-missing-methods #-}
 {-# LANGUAGE InstanceSigs #-}
 
-module State where
+module Store where
 
+-- To be able to define environments, we move from a simple State
+-- to a more advanced Store, which maps variables to a store location
+-- and that location in the storage holds a value (integer)
 type Var = String
 type Z = Integer
+type Loc = Z
 
 -- The State is simply a function from variables to integers
 type State = Var -> Z
 
--- We have 3 variables in our toy While language
+type Store = Loc -> Z
+type Envv = Var -> Loc
+
+-- We can get the simple lookup function back by composing our environment and store
+lookup :: Envv -> Store -> State
+lookup e sto = sto . e
+
+updSto :: Store -> Loc -> Z -> (Loc -> Z)
+updSto sto nl z ol = if ol == nl then z else sto ol
+
+-- We have 3 variables in our toy Proc language
 x :: Var
 x = "x"
 y :: Var
