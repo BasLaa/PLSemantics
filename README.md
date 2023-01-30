@@ -12,7 +12,7 @@ There is also a showcase of using PL semantics to analyse programs.
 
 The **Proc** language is an extension of the While language with support for procedures.
 It makes use of environments to store variables and procedures, which complicates the semantics.
-For **Proc**, the semantics are given in direct-style operational semantics.
+For **Proc**, the semantics are given in direct-style denotational semantics.
 
 This was done outside regular courses as an exercise to practice with PL semantics and Haskell.
 
